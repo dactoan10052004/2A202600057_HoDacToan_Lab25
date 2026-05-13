@@ -3,14 +3,16 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-import yaml
+import yaml  # type: ignore[import-untyped]
 from pydantic import BaseModel, Field
 
 
 class ProviderConfig(BaseModel):
     name: str
-    fail_rate: float = Field(ge=0.0, le=1.0)
-    base_latency_ms: int = Field(gt=0)
+    provider_type: str = "fake"          # "fake" or "openai"
+    model: str = "gpt-4o-mini"           # used only when provider_type="openai"
+    fail_rate: float = Field(default=0.1, ge=0.0, le=1.0)
+    base_latency_ms: int = Field(default=200, gt=0)
     cost_per_1k_tokens: float = Field(ge=0.0)
 
 
@@ -30,12 +32,14 @@ class CacheConfig(BaseModel):
 
 class LoadTestConfig(BaseModel):
     requests: int = Field(gt=0)
+    concurrency: int = Field(default=1, gt=0)
 
 
 class ScenarioConfig(BaseModel):
     name: str
     description: str = ""
     provider_overrides: dict[str, float] = Field(default_factory=dict)
+    disable_cache: bool = False
 
 
 class LabConfig(BaseModel):
