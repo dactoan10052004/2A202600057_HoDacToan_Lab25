@@ -49,3 +49,42 @@ class FakeLLMProvider:
             output_tokens=output_tokens,
             estimated_cost=cost,
         )
+
+
+class OpenAIProvider:
+    """Real OpenAI provider — drops in as a replacement for FakeLLMProvider.
+
+    Falls back gracefully: if the API call raises any exception it re-raises
+    as ProviderError so the circuit breaker can count the failure.
+    """
+
+    def __init__(self, name: str, model: str, cost_per_1k_tokens: float, api_key: str):
+        from openai import OpenAI
+        self.name = name
+        self.model = model
+        self.cost_per_1k_tokens = cost_per_1k_tokens
+        self._client = OpenAI(api_key=api_key)
+
+    def complete(self, prompt: str) -> ProviderResponse:
+        start = time.perf_counter()
+        try:
+            response = self._client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+            )
+        except Exception as exc:
+            raise ProviderError(f"{self.name} api error: {exc}") from exc
+        latency_ms = (time.perf_counter() - start) * 1000
+        content = response.choices[0].message.content or ""
+        usage = response.usage
+        input_tokens = usage.prompt_tokens if usage else max(1, len(prompt.split()))
+        output_tokens = usage.completion_tokens if usage else 50
+        cost = (input_tokens + output_tokens) / 1000.0 * self.cost_per_1k_tokens
+        return ProviderResponse(
+            provider=self.name,
+            text=content,
+            latency_ms=latency_ms,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            estimated_cost=cost,
+        )

@@ -1,0 +1,32 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-9.0.3, pluggy-1.6.0 -- D:\vin_thuc_chien\2A202600057_HoDacToan_Lab25\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\vin_thuc_chien\2A202600057_HoDacToan_Lab25
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.13.0, cov-7.1.0
+collecting ... collected 21 items
+
+tests/test_cache.py::test_response_cache_exact_hit PASSED                [  4%]
+tests/test_cache.py::test_response_cache_skips_privacy_queries PASSED    [  9%]
+tests/test_cache.py::test_response_cache_rejects_different_year_false_hit PASSED [ 14%]
+tests/test_chaos_criteria.py::test_route_class_extracts_detailed_reason PASSED [ 19%]
+tests/test_chaos_criteria.py::test_primary_timeout_requires_fallback_and_open_circuit PASSED [ 23%]
+tests/test_chaos_criteria.py::test_run_simulation_uses_concurrency_field PASSED [ 28%]
+tests/test_chaos_criteria.py::test_recovery_time_ms_is_measured_after_circuit_closes PASSED [ 33%]
+tests/test_circuit_breaker.py::test_circuit_opens_fails_fast_and_recovers PASSED [ 38%]
+tests/test_circuit_breaker.py::test_half_open_failure_reopens PASSED     [ 42%]
+tests/test_config.py::test_default_config_loads PASSED                   [ 47%]
+tests/test_config.py::test_scenarios_loaded PASSED                       [ 52%]
+tests/test_gateway_contract.py::test_gateway_returns_response_with_route_reason PASSED [ 57%]
+tests/test_metrics.py::test_percentile PASSED                            [ 61%]
+tests/test_metrics.py::test_report_dict_contains_required_metrics PASSED [ 66%]
+tests/test_redis_cache.py::test_redis_connection PASSED                  [ 71%]
+tests/test_redis_cache.py::test_set_and_exact_get PASSED                 [ 76%]
+tests/test_redis_cache.py::test_ttl_expiry PASSED                        [ 80%]
+tests/test_redis_cache.py::test_shared_state_across_instances PASSED     [ 85%]
+tests/test_redis_cache.py::test_privacy_query_not_cached PASSED          [ 90%]
+tests/test_redis_cache.py::test_false_hit_different_years PASSED         [ 95%]
+tests/test_todo_requirements.py::test_semantic_cache_should_not_false_hit_different_intent PASSED [100%]
+
+============================= 21 passed in 2.38s ==============================

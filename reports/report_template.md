@@ -23,14 +23,15 @@ User Request
 
 ## 2. Configuration
 
-| Setting | Value | Reason |
+| Setting | Value | Why this value |
 |---|---:|---|
 | failure_threshold | TODO | TODO |
 | reset_timeout_seconds | TODO | TODO |
 | success_threshold | TODO | TODO |
 | cache TTL | TODO | TODO |
 | similarity_threshold | TODO | TODO |
-| load_test requests | TODO | TODO |
+| load_test requests | 1000 | TODO |
+| concurrency | 10 | TODO |
 
 ## 3. SLO definitions
 
@@ -104,7 +105,7 @@ TODO
 
 ## 7. Chaos scenarios
 
-| Scenario | Expected behavior | Observed behavior | Pass/Fail |
+| Scenario | Expected | Observed | Pass/Fail |
 |---|---|---|---|
 | primary_timeout_100 | All traffic fallback to backup, circuit opens | TODO | TODO |
 | primary_flaky_50 | Circuit oscillates, mix of primary and fallback | TODO | TODO |

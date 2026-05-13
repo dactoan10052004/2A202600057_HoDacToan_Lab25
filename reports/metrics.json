@@ -1,0 +1,31 @@
+{
+  "total_requests": 5000,
+  "availability": 0.9966,
+  "error_rate": 0.0034,
+  "latency_p50_ms": 1.54,
+  "latency_p95_ms": 312.32,
+  "latency_p99_ms": 504.12,
+  "fallback_success_rate": 0.9867,
+  "cache_hit_rate": 0.6392,
+  "circuit_open_count": 18,
+  "recovery_time_ms": 2898.127385548183,
+  "estimated_cost": 0.446928,
+  "estimated_cost_saved": 0.035955,
+  "scenarios": {
+    "primary_timeout_100": "pass",
+    "primary_flaky_50": "pass",
+    "all_healthy": "pass",
+    "cache_stale_candidate": "pass",
+    "recovery_demo": "pass"
+  },
+  "cache_comparison": {
+    "without_cache_latency_p50_ms": 209.5686,
+    "with_cache_latency_p50_ms": 0.3005,
+    "without_cache_latency_p95_ms": 237.379055,
+    "with_cache_latency_p95_ms": 225.43153,
+    "without_cache_estimated_cost": 0.008773,
+    "with_cache_estimated_cost": 0.00205,
+    "without_cache_hit_rate": 0.0,
+    "with_cache_hit_rate": 0.773
+  }
+}

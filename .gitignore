@@ -4,5 +4,6 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 *.pyc
-reports/metrics.json
-reports/final_report.md
+pytest-cache-files-*/
+.env
+.planning/

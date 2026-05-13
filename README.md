@@ -168,7 +168,7 @@ For each scenario:
 
 ```json
 {
-  "total_requests": 100,
+  "total_requests": 1000,
   "availability": 0.95,
   "error_rate": 0.05,
   "latency_p50_ms": 195.2,
@@ -306,6 +306,8 @@ Copy `reports/report_template.md` and fill in ALL sections:
    | reset_timeout_seconds | 2 | Matches expected provider recovery time |
    | cache TTL | 300 | 5-min freshness for FAQ-type queries |
    | similarity_threshold | 0.92 | Tested: 0.85 caused false hits on date-sensitive queries |
+   | load_test requests | 1000 | Enough repeated traffic to expose fallback, cache hits, and latency percentiles across 5 scenarios |
+   | concurrency | 10 | Simulates real multi-client load against the same gateway |
 
 3. **Metrics table** — Paste from `metrics.json`. Must include ALL required metrics.
 
