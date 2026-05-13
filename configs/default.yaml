@@ -21,7 +21,7 @@ cache:
   similarity_threshold: 0.92
   redis_url: "redis://localhost:6379/0"
 load_test:
-  requests: 200
+  requests: 1000
   concurrency: 10
 
 # Chaos scenarios: each overrides provider fail_rate for targeted testing.
