@@ -1,4 +1,4 @@
-.PHONY: test lint typecheck run-chaos report clean docker-up docker-down
+.PHONY: test lint typecheck run-chaos report clean docker-up docker-down dashboard
 
 test:
 	pytest -q
@@ -20,6 +20,9 @@ docker-up:
 
 docker-down:
 	docker compose down
+
+dashboard:
+	streamlit run dashboard/app.py --server.port 8501
 
 clean:
 	rm -rf .pytest_cache .ruff_cache .mypy_cache reports/metrics.json reports/final_report.md
